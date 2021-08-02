@@ -1,0 +1,25 @@
+{
+    "id": "3C2F06A4",
+    "path": "~/git/wasserstein-simstudy/src/anyd.R",
+    "project_path": "src/anyd.R",
+    "type": "r_source",
+    "hash": "0",
+    "contents": "",
+    "dirty": false,
+    "created": 1627915646912.0,
+    "source_on_save": false,
+    "relative_order": 2,
+    "properties": {
+        "cursorPosition": "23,26",
+        "scrollLine": "6",
+        "marks": "<:8,11\n>:8,14"
+    },
+    "folds": "",
+    "lastKnownWriteTime": 1627925589,
+    "encoding": "UTF-8",
+    "collab_server": "",
+    "source_window": "",
+    "last_content_update": 1627925589720,
+    "read_only": false,
+    "read_only_alternatives": []
+}

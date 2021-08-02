@@ -1,0 +1,25 @@
+{
+    "id": "AEB10A4D",
+    "path": "~/git/wasserstein-simstudy/src/costMatrix.cpp",
+    "project_path": "src/costMatrix.cpp",
+    "type": "cpp",
+    "hash": "0",
+    "contents": "",
+    "dirty": false,
+    "created": 1627918331281.0,
+    "source_on_save": false,
+    "relative_order": 7,
+    "properties": {
+        "cursorPosition": "10,79",
+        "scrollLine": "0",
+        "marks": "<:131,-1\n>:131,0"
+    },
+    "folds": "",
+    "lastKnownWriteTime": 1627925551,
+    "encoding": "UTF-8",
+    "collab_server": "",
+    "source_window": "",
+    "last_content_update": 1627925551559,
+    "read_only": false,
+    "read_only_alternatives": []
+}
