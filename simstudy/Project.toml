@@ -1,0 +1,6 @@
+[deps]
+AssignmentSolver = "8928493c-871c-11e9-09e1-0b378afb0546"
+Distances = "b4f34e82-e78d-54a5-968a-f98e89d6e8f7"
+Distributions = "31c24e10-a181-5473-b8eb-7969acd0382f"
+OptimalTransport = "7e02d93a-ae51-4f58-b602-d97af76e3b33"
+Tulip = "6dd1b50a-3aae-11e9-10b5-ef983d2400fa"

@@ -1,0 +1,18 @@
+###
+# Script to compute W_2 with metric induced by the Euclidean norm, in 1d
+# Distributions must be continuous.
+###
+
+n <- 1000 # Sample size
+
+# 1.) Generate samples (they don't have to be normal)
+
+muhat <- rnorm(n) # n samples from a standard normal
+nuhat <- rnorm(n)
+
+# 2.) Compute the empirical distance estimator
+# I.e. sort the samples in increasing order for both muhat and nuhat.
+# Compute the average squared Euclidean norm.
+# Square-root.
+
+sqrt(mean((sort(muhat) - sort(nuhat))^2))
