@@ -6,7 +6,7 @@
 # pattern: want plot variance against N, definintely for Wp^p goes down faster than 1/n, interesting: find out the exponent.
 # it's n^-c c> 1 but how big is this and how does it depend on dimension
 # How to see what size of c is:
-# Imagine I know a-priori it's logvar = logc * c log(n)
+# Imagine I know a-priori it's log(var) = logc * c log(n)
 # log log plot of variance against sample size then slope = c < -1
 # Then take p^th root then calculate variance and then loglog plot of variance against sample size
 # Pattern should be the same for whatever mertic and exponent p > 1
@@ -23,12 +23,9 @@
 # Came out february, good papers -> you must enjoy them. contains refernece to previous work which is pretty good
 # https://arxiv.org/pdf/2102.06379.pdf
 
-require(JuliaCall)
-julia <- julia_setup()
 require(Rcpp)
 sourceCpp("src/network_simplex_fast.cpp") # Compile and load the solver. The header files are also necessary.
 sourceCpp("src/costMatrix.cpp")
-julia_source("costMatrixjl.jl")
 
 n <- 1000 # Sample size
 d <- 10   # Dimension
@@ -43,14 +40,22 @@ nuhat <- matrix(rnorm(n * d), nrow = d)
 # In general, you'll do c_{ij} = 1/n * d(x_i, y_i)^p.
 
 cost_mat <- costMatrix(muhat, nuhat, 2, 2) # L-2 metric, wasserstein 2 norm
-cm1 <- costMatrix(muhat, nuhat, 2, 2) # L-2 metric, wasserstein 2 norm
-cm2 <- julia_call("costMatrixjl", muhat,nuhat, 2, 2)
-
-# remake the cost matrix
 
 # 3.) Compute the distance from the cost matrix
 w2_empirical <- sqrt(SolveAssignmentNetworkflow(cost_mat))
 
-# Testing
+w2_emp <- c()
+for (i in 2:1000){
+    mh <- muhat[1:10, 1:i]
+    nh <- nuhat[1:10, 1:i]
+    cm <- costMatrix(mh, nh, 2, 2)
+    w2_emp[i-1] <- sqrt(SolveAssignmentNetworkflow(cm))
+}
+w2_emp_vars <- rep(0, 999)
+for (i in 2:999){
+    w2_emp_vars[i] <- var(w2_emp[1:i])
+}
+w2_emp_vars
 
-  
+plot(2:1000, w2_emp_vars, log = "xy")
+plot(log(2:1000), log(w2_emp_vars))
