@@ -23,9 +23,12 @@
 # Came out february, good papers -> you must enjoy them. contains refernece to previous work which is pretty good
 # https://arxiv.org/pdf/2102.06379.pdf
 
+require(JuliaCall)
+julia <- julia_setup()
 require(Rcpp)
 sourceCpp("src/network_simplex_fast.cpp") # Compile and load the solver. The header files are also necessary.
 sourceCpp("src/costMatrix.cpp")
+julia_source("costMatrixjl.jl")
 
 n <- 1000 # Sample size
 d <- 10   # Dimension
@@ -40,6 +43,8 @@ nuhat <- matrix(rnorm(n * d), nrow = d)
 # In general, you'll do c_{ij} = 1/n * d(x_i, y_i)^p.
 
 cost_mat <- costMatrix(muhat, nuhat, 2, 2) # L-2 metric, wasserstein 2 norm
+cm1 <- costMatrix(muhat, nuhat, 2, 2) # L-2 metric, wasserstein 2 norm
+cm2 <- julia_call("costMatrixjl", muhat,nuhat, 2, 2)
 
 # remake the cost matrix
 
