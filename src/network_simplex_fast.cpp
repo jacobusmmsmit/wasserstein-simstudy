@@ -5,9 +5,9 @@ using namespace std;
 using namespace lemon;
 
 //[[Rcpp::export]]
-double SolveAssignmentNetworkflow(const NumericMatrix &C)
+double SolveAssignmentNetworkflow(const int n, const NumericMatrix &C)
 {
-  int64_t n = C.rows();
+  //int64_t n = C.rows();
   
   // Set up the fully connected graph for the problem
   FullBipartiteDigraph di(n, n);
@@ -37,5 +37,6 @@ double SolveAssignmentNetworkflow(const NumericMatrix &C)
   net.supplyMap(&weights1[0], n, &weights2[0], n);
   net.run();
 
-  return net.totalCost();
+  // Return total transportation cost (divide by n to account for the 1/n weight of each sample)
+  return net.totalCost() / n;
 }
